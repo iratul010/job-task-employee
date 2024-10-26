@@ -5,138 +5,149 @@ import { FaUsers } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { CgCalendarDates } from "react-icons/cg";
 import { GoChevronDown } from "react-icons/go";
-import {  useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { PiXCircleFill } from "react-icons/pi";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { GoArrowLeft } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
+import { VscChromeClose } from "react-icons/vsc";
+import { TbPencilMinus } from "react-icons/tb";
 
 const EmployeeTable = () => {
-  const [data, setData] = useState([
-    {
-      id: "#1248",
-      name: "Sadik Hasan",
-      duration: "03 hr",
-      startTime: "07:15 AM",
-      endTime: "10:15 AM",
-      dueHours: "05 hr",
-      department: "Design",
-      project: "CRM Project",
-      notes: "Working on Data Management",
-    },
-    {
-      id: "#1249",
-      name: "Rahim Khan",
-      duration: "05 hr",
-      startTime: "09:00 AM",
-      endTime: "02:00 PM",
-      dueHours: "03 hr",
-      department: "Development",
-      project: "HRM Project",
-      notes: "Implementing UI components",
-    },
-    {
-      id: "#1250",
-      name: "Mina Akter",
-      duration: "04 hr",
-      startTime: "08:30 AM",
-      endTime: "12:30 PM",
-      dueHours: "04 hr",
-      department: "Product",
-      project: "CRM Project",
-      notes: "Analyzing product feedback",
-    },
-    {
-      id: "#1251",
-      name: "Hasib Uddin",
-      duration: "02 hr",
-      startTime: "10:00 AM",
-      endTime: "12:00 PM",
-      dueHours: "06 hr",
-      department: "Sales",
-      project: "HRM Project",
-      notes: "Preparing sales reports",
-    },
-    {
-      id: "#1252",
-      name: "Nadia Islam",
-      duration: "03 hr",
-      startTime: "07:45 AM",
-      endTime: "10:45 AM",
-      dueHours: "05 hr",
-      department: "Design",
-      project: "CRM Project",
-      notes: "Designing new layout",
-    },
-    {
-      id: "#1253",
-      name: "Fahim Rahman",
-      duration: "06 hr",
-      startTime: "09:00 AM",
-      endTime: "03:00 PM",
-      dueHours: "02 hr",
-      department: "Development",
-      project: "HRM Project",
-      notes: "Developing backend API",
-    },
-    {
-      id: "#1254",
-      name: "Arif Chowdhury",
-      duration: "04 hr",
-      startTime: "08:15 AM",
-      endTime: "12:15 PM",
-      dueHours: "04 hr",
-      department: "Product",
-      project: "CRM Project",
-      notes: "Updating product specs",
-    },
-    {
-      id: "#1255",
-      name: "Rumi Akhter",
-      duration: "03 hr",
-      startTime: "07:00 AM",
-      endTime: "10:00 AM",
-      dueHours: "05 hr",
-      department: "Sales",
-      project: "HRM Project",
-      notes: "Meeting with clients",
-    },
-    {
-      id: "#1256",
-      name: "Tariq Islam",
-      duration: "05 hr",
-      startTime: "11:00 AM",
-      endTime: "04:00 PM",
-      dueHours: "03 hr",
-      department: "Design",
-      project: "CRM Project",
-      notes: "Finalizing mockups",
-    },
-    {
-      id: "#1257",
-      name: "Salma Khatun",
-      duration: "04 hr",
-      startTime: "08:00 AM",
-      endTime: "12:00 PM",
-      dueHours: "04 hr",
-      department: "Development",
-      project: "HRM Project",
-      notes: "Code review",
-    },
-  ]);
+  const [serial, setSerial] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+  const [active, setActive] = useState(false);
+  const [status, setStatus] = useState("Status");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDepart, setIsOpenDepart] = useState(false);
+  const [isDotOpen, setIsDotOpen] = useState(false);
+
+  const [departStatus, setDepartStatus] = useState("Department");
+  const dropdownRef = useRef(null);
+  const dateRangeRef = useRef(null);
+  const departRef = useRef(null);
+  const dotRef = useRef(null);
+  const handleStatus = (open) => {
+    setStatus("Status");
+    setIsOpen(open);
+  };
+  const handleDepartment = (open) => {
+    setDepartStatus("Department");
+    setIsOpenDepart(open);
+  };
+  const handleDepartmentStatus = (status) => {
+    setDepartStatus(status);
+  };
+  const handleChange = (status) => {
+    setStatus(status);
+    setIsOpen(false);
+  };
+  const handleClose = (active) => {
+    setActive(active);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    // date Range
+    const handleclickDateOutside = (event) => {
+      if (
+        dateRangeRef.current &&
+        !dateRangeRef.current.contains(event.target)
+      ) {
+        setIsOpenDepart(false);
+      }
+    };
+    document.addEventListener("mousedown", handleclickDateOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleclickDateOutside);
+    };
+  }, []);
+  useEffect(() => {
+    // dotRef
+    const handleclickDotOutside = (event) => {
+      if (dotRef.current && !dotRef.current.contains(event.target)) {
+        setIsDotOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleclickDotOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleclickDotOutside);
+    };
+  }, []);
+  useEffect(() => {
+    const handleclickDepartOutside = (event) => {
+      if (departRef.current && !departRef.current.contains(event.target)) {
+        setActive(false);
+      }
+    };
+    document.addEventListener("mousedown", handleclickDepartOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleclickDepartOutside);
+    };
+  }, []);
+
+
+  const departArr = ["Design", "Development", "Product", "Sales"];
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        
+        const response = await fetch('/public/data/data.json'); 
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setData(jsonData);  
+      } catch (error) {
+        setError(error.message); 
+      } finally {
+        setLoading(false);  
+      }
+    };
+
+    fetchData();  
+  }, []);
+
+ 
+  const handleDotOpen = (index) => {
+    console.log(index);
+    setData((prevdata) => {
+      const newData = [...prevdata];
+      newData[index].dotOpen = true;
+      console.log(newData);
+      return newData;
+    });
+  };
 
   const handleColor = (department) => {
     switch (department) {
       case "Design":
-        return ["text-green-400", "bg-green-50"];
+        return ["text-green-600", "bg-green-50"];
       case "Development":
-        return ["text-blue-400", "bg-blue-50"];
+        return ["text-blue-600", "bg-blue-50"];
       case "Product":
-        return ["text-orange-400", "bg-orange-50"];
+        return ["text-orange-600", "bg-orange-50"];
       case "Sales":
-        return ["text-purple-400", "bg-purple-50"];
+        return ["text-purple-600", "bg-purple-50"];
     }
   };
   const handleApprove = (index) => {
+    console.log("apps");
     setData((prevData) => {
       const newData = [...prevData];
       newData[index].status = "approved";
@@ -157,7 +168,13 @@ const EmployeeTable = () => {
       return newData;
     });
   };
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
 
+  if (error) {
+    return <div>Error: {error}</div>;  
+  }
   return (
     <div
       className="employeetable min-h-screen"
@@ -169,7 +186,7 @@ const EmployeeTable = () => {
             <FaUsers />
           </div>
           <div className="flex flex-col">
-            <h3 className="font-bold text-xl">Employee Time</h3>
+            <h3 className="font-bold  text-xl ">Employee Time</h3>
             <p>Manage your time logs</p>
           </div>
         </div>
@@ -190,8 +207,8 @@ const EmployeeTable = () => {
       </div>
       {/* Table */}
       <div className="bg-white border rounded-lg px-10 py-10 mx-10 my-10">
-        <div className="header flex items-center justify-between  ">
-          <h2 className="text-xl font-semibold">Employee Time Logs</h2>
+        <div className="header flex items-center justify-between  mb-4">
+          <h2 className="lg:text-xl font-semibold">Employee Time Logs</h2>
           <div className="flex items-center space-x-3">
             <div className="input relative  py-3 transform transition-transform scale-90 focus-within:scale-95     ">
               <span className="absolute left-5 top-7 px-3 border-none text-gray-400">
@@ -203,27 +220,133 @@ const EmployeeTable = () => {
                 placeholder="Search by ID, Name "
               />
             </div>
-            <div className="flex items-center space-x-3 text-lg border py-2 px-5 rounded-lg">
-              <span className="text-2xl">
-                <CgCalendarDates />
-              </span>
-              <p>Date Range</p>
-              <span>
-                <GoChevronDown />
-              </span>
+            <div className="relative text-lg border py-2 px-5 rounded-lg">
+              <button
+                onClick={() => handleClose(!active)}
+                className="flex items-center space-x-2"
+              >
+                <span className="lg:text-2xl md:text-xl">
+                  <CgCalendarDates />
+                </span>
+                <span>Date Range</span>
+                <span>
+                  <GoChevronDown />
+                </span>
+              </button>
+              <div
+                ref={dateRangeRef}
+                className={`${
+                  active ? "opacity-100" : "opacity-0"
+                } absolute   top-16 right-4 rounded-lg shadow-xl border bg-white p-3 z-10  `}
+              >
+                <div className="p-4 w-[40vw] flex  flex-col items-center   relative space-y-6  ">
+                  <button
+                    className=" absolute top-5 right-4 hover:bg-gray-50 p-2 rounded-lg text-2xl"
+                    onClick={() => handleClose(false)}
+                  >
+                    <VscChromeClose />
+                  </button>
+                  <table className=" w-full overflow-hidden text-base">
+                    <thead>
+                      <tr className="grid grid-cols-7 gap-3 py-2 font-semibold ">
+                        <td className="col-span-3">Date Range</td>
+                        <td className="col-span-2">Start date</td>
+                        <td className="col-span-2">End date</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className=" grid grid-cols-7 gap-4 py-2  ">
+                        <td className="col-span-3">
+                          <button className="flex items-center justify-between w-full border border-gray-200 rounded-lg bg-white py-2 px-2">
+                            <span>Last 7 Days</span> <GoChevronDown />
+                          </button>
+                        </td>
+                        <td className="col-span-2">
+                          <button className="flex items-center justify-between border py-2 px-2 rounded-lg border-gray-200 w-full">
+                            <span>15-07-2024</span> <CgCalendarDates />
+                          </button>
+                        </td>
+                        <td className="col-span-2">
+                          <button className="flex items-center justify-between border py-2 px-2 rounded-lg border-gray-200  w-full">
+                            <span>21-07-2024</span>
+                            <CgCalendarDates />
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div className="w-full flex items-center justify-end">
+                    <div className="flex items-center gap-4 space-x-3 justify-center">
+                      <button
+                        onClick={() => handleClose(false)}
+                        className="px-4 py-2 rounded-lg   active:scale-95 focus:outline-none transition-transform duration-200 ease-in-out"
+                      >
+                        Cancel
+                      </button>
+
+                      <button className="px-12 py-1 rounded-lg bg-blue-600 text-white">
+                        Apply
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center border px-5 py-2 rounded-lg text-lg space-x-3">
-              <p>Status</p>
-              <span>
+            <div className=" relative w-[10rem]" ref={dropdownRef}>
+              <button
+                onClick={() => handleStatus(!isOpen)}
+                className="w-full flex items-center justify-between  border px-3  py-2 rounded-lg text-lg "
+              >
+                <span>{status}</span>
+
                 <GoChevronDown />
-              </span>
+              </button>
+
+              <div
+                className={`${
+                  isOpen ? "block" : "hidden"
+                } absolute left-0 top-10   flex flex-col items-center w-full z-10 `}
+              >
+                <button
+                  onClick={() => handleChange("Approved")}
+                  className="py-2 bg-white flex items-center px-4 space-x-2 hover:bg-gray-50   border rounded-lg text-green-600 w-full"
+                >
+                  <FaCheckCircle />
+                  <span>Approved</span>
+                </button>
+                <button
+                  onClick={() => handleChange("Rejected")}
+                  className="py-2 bg-white flex items-center px-4 space-x-2 hover:bg-gray-50   border rounded-lg text-red-600 w-full"
+                >
+                  <PiXCircleFill /> <span>Rejected</span>
+                </button>
+              </div>
             </div>
 
-            <div className="flex items-center border px-5 py-2 rounded-lg text-lg space-x-3">
-              <p>Department</p>
-              <span>
+            <div className=" relative  w-[11rem]">
+              <button
+                onClick={() => handleDepartment(!isOpenDepart)}
+                className="w-full flex items-center justify-between  border px-3  py-2 rounded-lg text-lg"
+              >
+                <span> {departStatus}</span>
                 <GoChevronDown />
-              </span>
+              </button>
+              <div
+                ref={departRef}
+                className={`${
+                  isOpenDepart ? "block" : "hidden"
+                } absolute left-0 top-10   flex flex-col items-center w-full z-20 `}
+              >
+                {departArr.map((depart, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleDepartmentStatus(depart)}
+                    className="py-2 bg-white flex items-center px-4 space-x-2 hover:bg-gray-50   border    w-full"
+                  >
+                    {depart}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -267,7 +390,7 @@ const EmployeeTable = () => {
               <div className="px-3">{item?.dueHours}</div>
 
               <div
-                className={`max-w-max   px-3 py-1 border rounded-3xl   ${
+                className={`max-w-max  font-semibold px-3 py-1 border rounded-3xl   ${
                   handleColor(item.department)[0]
                 } ${handleColor(item.department)[1]}`}
               >
@@ -281,7 +404,7 @@ const EmployeeTable = () => {
                   ? `${item.notes.slice(0, 15)}...`
                   : item.notes
               } `}</div>
-              <div className="">
+              <div className="text-sm">
                 {item.status === "approved" ? (
                   <div className="flex space-x-3">
                     <button className="flex items-center gap-2 border px-4 py-1 text-green-800 bg-green-50 border-green-800 rounded-lg">
@@ -299,8 +422,8 @@ const EmployeeTable = () => {
                   </div>
                 ) : item.status === "rejected" ? (
                   <div className="flex space-x-3">
-                    <button className="text-red-800 flex gap-2 items-center border border-red-800 py-1 rounded-lg px-3  ">
-                      <span className="text-lg">
+                    <button className="text-red-600 flex gap-2 items-center border border-red-600 py-1 rounded-lg px-3  ">
+                      <span>
                         <PiXCircleFill />
                       </span>
                       Rejected
@@ -329,11 +452,64 @@ const EmployeeTable = () => {
                   </div>
                 )}
               </div>
-              <div className="absolute -right-6 py-3 hover:cursor-pointer  border ">
+
+              <div
+                onClick={() => handleDotOpen(index)}
+                className="absolute -right-6 py-3 hover:cursor-pointer  border "
+              >
                 <BsThreeDotsVertical />
               </div>
+
+              {
+                <div
+                  ref={dotRef}
+                  className={`${
+                    item.dotOpen || isDotOpen ? "block" : "hidden"
+                  } absolute right-0 w-[10rem] bg-white shadow-lg flex flex-col items-center z-10 overflow-hidden`}
+                >
+                  <button className="flex items-center px-3 py-3">
+                    <TbPencilMinus />
+                    <span>Edit Info</span>
+                  </button>
+                  <button className="flex items-center px-3 py-3">
+                    <TbPencilMinus />
+                    <span>Export Excel</span>
+                  </button>
+                  <button className="flex items-center px-3 py-3">
+                    <TbPencilMinus />
+                    <span>Delete Info</span>
+                  </button>
+                </div>
+              }
             </div>
           ))}
+        </div>
+      </div>
+      <div className="flex justify-end items-center px-10 py-4">
+        <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center justify-center gap-3">
+            {" "}
+            <span className="text-2xl text-gray-600">
+              <GoArrowLeft />
+            </span>
+            Prev
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            {serial.map((index) => (
+              <div
+                key={index}
+                className="cursor-pointer border px-3 py-1 rounded-lg active::bg-white"
+              >
+                {index}
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center gap-3">
+            Next{" "}
+            <span className="text-2xl text-gray-600">
+              <GoArrowRight />
+            </span>
+          </div>
         </div>
       </div>
     </div>

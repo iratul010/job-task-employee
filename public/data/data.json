@@ -1,0 +1,112 @@
+[
+  {
+    "id": "#1248",
+    "name": "Sadik Hasan",
+    "duration": "03 hr",
+    "startTime": "07:15 AM",
+    "endTime": "10:15 AM",
+    "dueHours": "05 hr",
+    "department": "Design",
+    "project": "CRM Project",
+    "notes": "Working on Data Management"
+  },
+  {
+    "id": "#1249",
+    "name": "Rahim Khan",
+    "duration": "05 hr",
+    "startTime": "09:00 AM",
+    "endTime": "02:00 PM",
+    "dueHours": "03 hr",
+    "department": "Development",
+    "project": "HRM Project",
+    "notes": "Implementing UI components"
+  },
+  {
+    "id": "#1250",
+    "name": "Mina Akter",
+    "duration": "04 hr",
+    "startTime": "08:30 AM",
+    "endTime": "12:30 PM",
+    "dueHours": "04 hr",
+    "department": "Product",
+    "project": "CRM Project",
+    "notes": "Analyzing product feedback"
+  },
+  {
+    "id": "#1251",
+    "name": "Hasib Uddin",
+    "duration": "02 hr",
+    "startTime": "10:00 AM",
+    "endTime": "12:00 PM",
+    "dueHours": "06 hr",
+    "department": "Sales",
+    "project": "HRM Project",
+    "notes": "Preparing sales reports"
+  },
+  {
+    "id": "#1252",
+    "name": "Nadia Islam",
+    "duration": "03 hr",
+    "startTime": "07:45 AM",
+    "endTime": "10:45 AM",
+    "dueHours": "05 hr",
+    "department": "Design",
+    "project": "CRM Project",
+    "notes": "Designing new layout"
+  },
+  {
+    "id": "#1253",
+    "name": "Fahim Rahman",
+    "duration": "06 hr",
+    "startTime": "09:00 AM",
+    "endTime": "03:00 PM",
+    "dueHours": "02 hr",
+    "department": "Development",
+    "project": "HRM Project",
+    "notes": "Developing backend API"
+  },
+  {
+    "id": "#1254",
+    "name": "Arif Chowdhury",
+    "duration": "04 hr",
+    "startTime": "08:15 AM",
+    "endTime": "12:15 PM",
+    "dueHours": "04 hr",
+    "department": "Product",
+    "project": "CRM Project",
+    "notes": "Updating product specs"
+  },
+  {
+    "id": "#1255",
+    "name": "Rumi Akhter",
+    "duration": "03 hr",
+    "startTime": "07:00 AM",
+    "endTime": "10:00 AM",
+    "dueHours": "05 hr",
+    "department": "Sales",
+    "project": "HRM Project",
+    "notes": "Meeting with clients"
+  },
+  {
+    "id": "#1256",
+    "name": "Tariq Islam",
+    "duration": "05 hr",
+    "startTime": "11:00 AM",
+    "endTime": "04:00 PM",
+    "dueHours": "03 hr",
+    "department": "Design",
+    "project": "CRM Project",
+    "notes": "Finalizing mockups"
+  },
+  {
+    "id": "#1257",
+    "name": "Salma Khatun",
+    "duration": "04 hr",
+    "startTime": "08:00 AM",
+    "endTime": "12:00 PM",
+    "dueHours": "04 hr",
+    "department": "Development",
+    "project": "HRM Project",
+    "notes": "Code review"
+  }
+]
