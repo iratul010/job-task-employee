@@ -1,0 +1,5 @@
+.root{
+  display: grid;
+  grid-template-columns: [full-start] 1fr [center-start] repeat(8,[col-start] minmax(min-content, 140px) [col-end]) [center-end] 1fr [full-end];
+ 
+}
