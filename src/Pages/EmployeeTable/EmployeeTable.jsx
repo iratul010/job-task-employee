@@ -1,43 +1,36 @@
 import "./EmployeeTable.css";
 import { RxDownload } from "react-icons/rx";
 import { FaUsers } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Pagination from "../../Components/Pagination/Pagination";
 import TablesDataElement from "../../Components/TablesDataElement/TablesDataElement";
 import TableHeader from "../../Components/TableHeader/TableHeader";
 import EmployeeHeader from "../../Components/EmployeeHeader/EmployeeHeader";
 import AddEmployeeBtnModal from "../../Components/AddEmployeeBtnModal/AddEmployeeBtnModal";
+import { mainData } from "../../DATA/data";
 
 const EmployeeTable = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("../../../public/data/data.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const [data, setData] = useState(mainData);
 
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("../../../public/data/data.json");
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const jsonData = await response.json();
+  //       setData(jsonData);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  //   fetchData();
+  // }, []);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   return (
     <div
       className="employeetable min-h-screen"
