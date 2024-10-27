@@ -2,7 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
- 
+ import logo from '../../assets/svg/plan-list-svgrepo-com.svg'
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("");
   const location = useLocation();
@@ -32,7 +32,7 @@ const Navbar = () => {
           <span className="text-2xl lg:text-4xl font-bold">plut</span>
           <img
             className="h-10 lg:h-14 ml-2"
-            src="../../../public/svg/plan-list-svgrepo-com.svg"
+            src={logo}
             alt="logo"
           />
         </Link>
