@@ -1,4 +1,5 @@
 import "./Home.css";
+import homeHeroImg from "./../../../public/img/home.jpeg";
 function Home() {
   return (
     <div className="home min-h-screen bg-gray-200 flex justify-center items-center px-4 md:px-12 ">
@@ -19,7 +20,8 @@ function Home() {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <img className="rounded-md" src='/public/img/homebg.jpeg' alt="Home Img" />
+        <img className="rounded-md" src={homeHeroImg} alt="Home Img" />
+
         </div>
       </div>
     </div>
