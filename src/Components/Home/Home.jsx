@@ -20,7 +20,7 @@ function Home() {
           </div>
         </div>
         <div className="flex justify-center items-center">
-        <img className="rounded-md" src='../../assets/img/home.jpeg' alt="Home Img" />
+        <img className="rounded-md" src="/src/assets/img/home.jpeg" alt="Home Img" />
 
         </div>
       </div>
