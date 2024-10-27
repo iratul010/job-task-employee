@@ -4,7 +4,7 @@ import { RxCross1 } from "react-icons/rx";
 import { LuPlus } from "react-icons/lu";
 import { GoChevronDown } from "react-icons/go";
 
-const AddEmployeeBtn = () => {
+const AddEmployeeBtnModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
 
@@ -35,7 +35,7 @@ const AddEmployeeBtn = () => {
                 className="font-semibold text-2xl "
               >
                 <RxCross1 />
-              </button>{" "}
+              </button>
             </div>
 
             <div className="px-4 py-3 text-md">
@@ -111,7 +111,7 @@ const AddEmployeeBtn = () => {
               </div>
             </div>
             <div className="flex justify-end items-center gap-4 p-3">
-              <button className="lg:text-xl md:text-md">Cancel</button>
+              <button onClick={()=>closeModal()} className="lg:text-xl md:text-md">Cancel</button>
               <button className="lg:text-lg md:text-md bg-indigo-600 text-white p-3 rounded-lg">
                 Add Employee
               </button>
@@ -123,4 +123,4 @@ const AddEmployeeBtn = () => {
   );
 };
 
-export default AddEmployeeBtn;
+export default AddEmployeeBtnModal;
