@@ -27,7 +27,8 @@ const Navbar = () => {
           <span className="lg:text-5xl sm:text-2xl font-bold">plut</span>
           <img
             className="h-14"
-            src="/public/svg/plan-list-svgrepo-com.svg"
+          
+            src="../../../public/svg/plan-list-svgrepo-com.svg"
             alt="logog"
           />
         </Link>
@@ -107,7 +108,7 @@ const Navbar = () => {
             </div>
           </div>
           <figure className="w-14 h-14 bg-red-100">
-            <img src="/public/svg/man.svg" alt="" />
+            <img src="../../../public/svg/man.svg" alt="" />
           </figure>
         </div>
       </div>
