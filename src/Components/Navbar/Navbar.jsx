@@ -3,6 +3,8 @@ import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
  import logo from '../../assets/svg/plan-list-svgrepo-com.svg'
+ import profile from '../../assets/svg/man.svg'
+ 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("");
   const location = useLocation();
@@ -72,7 +74,7 @@ const Navbar = () => {
             <div className="text-gray-500">{formatDate(currentDate)}</div>
           </div>
           <figure className="w-10 h-10 lg:w-14 lg:h-14 rounded-full overflow-hidden bg-gray-200">
-            <img src="../../../public/svg/man.svg" alt="profile" className="w-full h-full" />
+            <img src={profile} alt="profile" className="w-full h-full" />
           </figure>
         </div>
       </div>
